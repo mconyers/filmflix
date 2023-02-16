@@ -1,0 +1,41 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e8f1f9; }
+	</style>
+{% endblock %}
+
+{% block title %}
+FilmFlix Database
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <h1 class="pt-5 pb-2">Welcome to FilmFlix!</h1>
+
+      <p class="lead">This is the index page for an example Flask app using a SQL database containing a list of available films.</p>
+
+      <p>Select the genre of film you would like to see:</p>
+
+      <ul>
+          {% for g in genres %}
+          <li><a href="{{ url_for( 'inventory', genre=g.genre ) }}">{{ g.genre }}</a></li>
+          {% endfor %}
+      </ul>
+
+	  <!-- links -->
+	  <p>You can <a href="{{ url_for('add_record') }}">submit a new film</a>.</p>
+	  <p>You can <a href="{{ url_for( 'select_record', letters='AF' ) }}">select a film for editing</a>.</p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
